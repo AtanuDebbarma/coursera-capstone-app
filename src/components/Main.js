@@ -1,10 +1,5 @@
-const Main = () => {
-    return (
-        <main>
-            <h1>Welcome to Little Lemon</h1>
-            <p>Your favorite Mediterranean Bistro!</p>
-        </main>
-    );
+const Main = ({ children }) => {
+    return <main>{children}</main>;
 };
 
 export default Main;
