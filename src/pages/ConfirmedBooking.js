@@ -1,6 +1,6 @@
 import "../styles/ConfirmedBooking.css";
 import { useNavigate } from "react-router-dom";
-import { useBooking } from "../BookingContext";
+import { useBooking } from "../Context/BookingContext";
 import { useEffect } from "react";
 
 const ConfirmedBooking = () => {

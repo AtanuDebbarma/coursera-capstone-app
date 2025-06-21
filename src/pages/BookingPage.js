@@ -1,97 +1,103 @@
 import { Bookings } from "../components/subComponents.js/Bookings";
 import { useState, useReducer, useEffect } from "react";
-import {
-  updateTimes,
-  initializeTimes,
-  validateForm,
-} from "../utils/bookingUtils.js";
+import { validateForm } from "../utils/bookingUtils.js";
 import { useNavigate } from "react-router-dom";
-import { submitAPI } from "../capstone_main_api.js";
-import { useBooking } from "../BookingContext.js";
+import { useBooking } from "../Context/BookingContext.js";
+import { useLoadRemoteAPI } from "../customHooks/useLoadRemoteAPI.js";
 
 /**
- * BookingPage is a component that manages the state and logic for booking a table.
- * It utilizes React hooks for state management and effects, and integrates with
- * an API for submitting booking data. The component renders the Bookings form
- * and handles form submission, updating available times, and page navigation upon
- * successful booking.
+ * BookingPage renders a form for booking a table at Little Lemon.
+ * The form data is validated on submission and sent to the API
+ * for booking. The page also loads available times for the
+ * selected date using the fetchAPI function.
  *
- * @return {React.JSX.Element} The rendered booking page component.
+ * @return {React.JSX.Element} A JSX element representing the booking page.
  */
 const BookingPage = () => {
+  // Load fetchAPI and submitAPI from custom remote script
+  const { fetchAPI, submitAPI } = useLoadRemoteAPI();
+
   const navigate = useNavigate();
   const { setBookingData } = useBooking();
+
+  // Form field states
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState("");
 
-  const [availableTimes, dispatchTimes] = useReducer(
-    updateTimes,
-    [],
-    initializeTimes
-  );
-
-  // Submit form function that handles API submission and navigation
-  const submitForm = async (formData) => {
-    const isSubmitted = await submitAPI(formData); // assuming it's a Promise
-    if (isSubmitted) {
-      navigate("/confirmed-booking");
+  // Reducer to store and update available time slots
+  const timesReducer = (state, action) => {
+    switch (action.type) {
+      case "SET":
+        return action.payload;
+      default:
+        return state;
     }
   };
 
-  /**
-   * Handles form submission, performing basic form validation and saving
-   * form data in the BookingContext. If the form is valid, it submits the
-   * data to the API and navigates to the confirmed booking page upon
-   * successful submission.
-   *
-   * @param {React.FormEvent<HTMLFormElement>} e The form event object.
-   */
+  const [availableTimes, dispatchTimes] = useReducer(timesReducer, []);
+
+  // Initialize available times once fetchAPI is ready (on first load)
+  useEffect(() => {
+    if (fetchAPI) {
+      const today = new Date();
+      const times = fetchAPI(today); // Safe to call after fetchAPI is loaded
+      dispatchTimes({ type: "SET", payload: times });
+    }
+  }, [fetchAPI]);
+
+  // Update available times whenever the date changes (and fetchAPI is ready)
+  useEffect(() => {
+    if (fetchAPI && date) {
+      const selectedDate = new Date(date);
+      const times = fetchAPI(selectedDate);
+      dispatchTimes({ type: "SET", payload: times });
+    }
+  }, [fetchAPI, date]);
+
+  // Handle form submission: validate, save to context, submit to API
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validation = validateForm({
-      date,
-      time,
-      guests,
-      occasion,
-    });
+    const validation = validateForm({ date, time, guests, occasion }); // external validation function
+
     if (validation === "missing") {
       alert("Please fill in all fields before submitting.");
       console.error("Form validation failed: missing fields");
       return;
     }
+
     if (validation === "invalidGuests") {
-      alert("Please enter a valid number of guests (1-10).");
+      alert("Please enter a valid number of guests (1–10).");
       console.error("Form validation failed: invalid number of guests");
       return;
     }
-    if (validation === "valid") {
-      const formData = {
-        date,
-        time,
-        guests,
-        occasion,
-      };
-      console.log("Form submitted:", formData);
-      setBookingData(formData); // ✅ Save in context
 
-      // Submit to API and navigate if successful
-      submitForm(formData);
+    if (validation === "valid") {
+      const formData = { date, time, guests, occasion };
+      console.log("Form submitted:", formData);
+
+      setBookingData(formData); // Save in context
+      submitForm(formData); // Send to API and navigate
     }
   };
 
-  useEffect(() => {
-    if (date) {
-      dispatchTimes({ date });
+  // Send booking data to the API
+  const submitForm = async (formData) => {
+    if (!submitAPI) {
+      console.error("❌ submitAPI is not defined yet");
+      return;
     }
-  }, [date]);
 
-  useEffect(() => {
-    console.log("Available times updated:", availableTimes);
-  }, [availableTimes]);
+    const isSubmitted = await submitAPI(formData);
 
+    if (isSubmitted) {
+      navigate("/confirmed-booking"); // Navigate on success
+    }
+  };
+
+  // Render the Bookings form
   return (
     <Bookings
       date={date}
