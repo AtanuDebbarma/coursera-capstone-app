@@ -1,0 +1,355 @@
+/* ConfirmedBooking.css */
+
+/* ====== Confirmation Hero Section ====== */
+.confirmation-hero {
+  background-color: #495e57;
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.confirmation-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.confirmation-hero h1 {
+  font-family: "Markazi Text", serif;
+  font-size: 4rem;
+  color: #f4ce14;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.confirmation-hero h2 {
+  font-family: "Markazi Text", serif;
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.confirmation-hero p {
+  font-size: 1.125rem;
+  color: white;
+  max-width: 65ch;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ====== Confirmation Section ====== */
+.confirmation-section {
+  padding: 4rem 0;
+  background-color: #ffffff;
+}
+
+.confirmation-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.confirmation-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* ====== Success Message ====== */
+.confirmation-message {
+  text-align: center;
+  background-color: #edefee;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.success-icon {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.success-icon svg {
+  background-color: white;
+  border-radius: 50%;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-message h2 {
+  font-family: "Markazi Text", serif;
+  font-size: 2.5rem;
+  color: #495e57;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.confirmation-message p {
+  font-size: 16px;
+  color: #4a4a4a;
+  line-height: 1.5;
+  max-width: 65ch;
+  margin: 0 auto;
+}
+.confirmation-details {
+  background-color: #fefefe;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+}
+
+.confirmation-details h3 {
+  font-family: "Markazi Text", serif;
+  font-size: 1.75rem;
+  color: #495e57;
+  margin-bottom: 1rem;
+}
+
+.confirmation-details p {
+  margin-bottom: 0.75rem;
+}
+
+/* ====== Next Steps Section ====== */
+.next-steps {
+  width: 100%;
+  max-width: 900px;
+}
+
+.next-steps h3 {
+  font-family: "Markazi Text", serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #495e57;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.step-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.step-icon {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.step-icon svg {
+  background-color: #edefee;
+  border-radius: 50%;
+  padding: 0.75rem;
+}
+
+.step-card h4 {
+  font-family: "Markazi Text", serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #495e57;
+  margin-bottom: 0.75rem;
+}
+
+.step-card p {
+  font-size: 14px;
+  color: #4a4a4a;
+  line-height: 1.5;
+}
+
+/* ====== Contact Information ====== */
+.contact-info {
+  background-color: #edefee;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.contact-info h3 {
+  font-family: "Markazi Text", serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #495e57;
+  margin-bottom: 1rem;
+}
+
+.contact-info > p {
+  font-size: 16px;
+  color: #4a4a4a;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-item {
+  font-size: 16px;
+  color: #4a4a4a;
+}
+
+.contact-item strong {
+  color: #495e57;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+/* ====== Action Buttons ====== */
+.confirmation-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primary-btn {
+  background-color: #f4ce14;
+  color: black;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-btn {
+  background-color: transparent;
+  color: #495e57;
+  border: 2px solid #495e57;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.secondary-btn:hover {
+  background-color: #495e57;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ====== Responsive Design ====== */
+@media (max-width: 768px) {
+  .confirmation-hero h1 {
+    font-size: 3rem;
+  }
+
+  .confirmation-hero h2 {
+    font-size: 2rem;
+  }
+
+  .confirmation-content {
+    gap: 2rem;
+  }
+
+  .confirmation-message {
+    padding: 2rem;
+  }
+
+  .confirmation-message h2 {
+    font-size: 2rem;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-details {
+    text-align: left;
+  }
+
+  .confirmation-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirmation-hero {
+    padding: 2rem 0;
+  }
+
+  .confirmation-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .confirmation-hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .confirmation-section {
+    padding: 2rem 0;
+  }
+
+  .confirmation-message {
+    padding: 1.5rem;
+  }
+
+  .confirmation-message h2 {
+    font-size: 1.75rem;
+  }
+
+  .step-card {
+    padding: 1.5rem;
+  }
+
+  .contact-info {
+    padding: 1.5rem;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
