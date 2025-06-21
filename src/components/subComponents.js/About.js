@@ -1,6 +1,14 @@
 import Restaurant from "../../assets/restaurant.jpg";
 import ChefCooking from "../../assets/restaurant chef B.jpg";
 
+/**
+ * The About component renders the About section of the page.
+ *
+ * The About component includes a hero image, a heading, a paragraph of text,
+ * and an image of a chef cooking.
+ *
+ * @return {ReactElement} A JSX element representing the About section.
+ */
 export const About = () => {
   return (
     <section className="about" id="about">

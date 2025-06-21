@@ -2,6 +2,10 @@ import GreekSalad from "../../assets/food/greek-salad.jpg";
 import Bruchetta from "../../assets/food/bruchetta.svg";
 import LemonDessert from "../../assets/food/lemon-dessert.jpg";
 
+/**
+ * Specials Array holds information about the specials offered by the restaurant.
+ * Each special includes the name, price, description, image, and alt text.
+ */
 const specials = [
   {
     name: "Greek salad",
@@ -29,6 +33,16 @@ const specials = [
   },
 ];
 
+/**
+ * SpecialsSection component renders a section of the website that displays a list of specials offered by the restaurant.
+ *
+ * The section includes a header with a title and a button to go to the online menu.
+ * The section also includes a grid of specials, which are displayed on cards.
+ * Each card includes an image, the name and price of the dish, a description of the dish,
+ * and a button to order a delivery.
+ *
+ * @returns {JSX.Element} The SpecialsSection component.
+ */
 export const SpecialsSection = () => {
   return (
     <section className="specials" id="menu">

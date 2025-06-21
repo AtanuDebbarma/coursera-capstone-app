@@ -3,6 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { useBooking } from "../Context/BookingContext";
 import { useEffect } from "react";
 
+/**
+ * ConfirmedBooking is a React component that displays a confirmation page
+ * for a successfully booked reservation at Little Lemon. It fetches the
+ * booking data from the BookingContext and redirects to the homepage if
+ * no booking data is available. The page includes a confirmation hero
+ * section, reservation details, next steps, contact information, and an
+ * action button to return to the homepage.
+ *
+ * @return {React.JSX.Element|null} The rendered confirmation page or null
+ * if no booking data is present.
+ */
 const ConfirmedBooking = () => {
   const { bookingData } = useBooking();
   const navigate = useNavigate();
