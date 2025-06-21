@@ -32,8 +32,8 @@ export const useLoadRemoteAPI = () => {
           remote.submitAPI = submitAPI;
         `);
 
-        setFetchAPI(remote.fetchAPI);
-        setSubmitAPI(remote.submitAPI);
+        setFetchAPI(() => remote.fetchAPI);
+        setSubmitAPI(() => remote.submitAPI);
         console.log("✅ Remote API loaded successfully");
       } catch (err) {
         console.error("❌ Failed to load remote API:", err);

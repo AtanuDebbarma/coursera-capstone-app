@@ -114,6 +114,30 @@
   max-width: 400px;
   margin: 0 auto;
 }
+/* ====== Fieldset Reset with Visible Legend ====== */
+.booking-form fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.booking-form legend {
+  font-family: "Markazi Text", serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
 
 .booking-form label {
   font-size: 18px;
