@@ -12,9 +12,7 @@ import "../../styles/Bookings.css";
  * @param {string} occasion - The occasion selected by the user.
  * @param {React.Dispatch<React.SetStateAction<string>>} setOccasion - The function to update the occasion state.
  * @param {string[]} availableTimes - The available times for booking.
- * @param {React.Dispatch<React.SetStateAction<string[]>>} dispatchTimes - The function to update the availableTimes state.
  * @param {Function} handleSubmit - The function to handle form submission.
- * @param {Function} submitForm - The function to handle the submission of the form to the API.
  *
  * @return {React.JSX.Element} A JSX element representing the booking form.
  */
@@ -28,66 +26,83 @@ export const BookingsForm = ({
   occasion,
   setOccasion,
   availableTimes,
-  dispatchTimes,
   handleSubmit,
-  submitForm,
 }) => {
   return (
-    <div className="booking-form">
-      <label htmlFor="res-date">Choose date</label>
-      <input
-        type="date"
-        id="res-date"
-        value={date}
-        onChange={(e) => {
-          setDate(e.target.value);
-          dispatchTimes({ date: e.target.value });
-        }}
-        required
-      />
+    <form
+      className="booking-form"
+      onSubmit={handleSubmit}
+      aria-label="Booking form for reserving a table at Little Lemon"
+    >
+      <fieldset>
+        <legend>Book a table</legend>
 
-      <label htmlFor="res-time">Choose time</label>
-      <select
-        id="res-time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-        required
+        <label htmlFor="res-date">Choose date</label>
+        <input
+          type="date"
+          id="res-date"
+          name="reservation-date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          min={new Date().toISOString().split("T")[0]} // prevent past dates
+          required
+          aria-required="true"
+        />
+
+        <label htmlFor="res-time">Choose time</label>
+        <select
+          id="res-time"
+          name="reservation-time"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          required
+          aria-required="true"
+        >
+          <option value="">Select a time</option>
+          {availableTimes.map((timeSlot) => (
+            <option key={timeSlot} value={timeSlot}>
+              {timeSlot}
+            </option>
+          ))}
+        </select>
+
+        <label htmlFor="guests">Number of guests</label>
+        <input
+          type="number"
+          id="guests"
+          name="guests"
+          placeholder="1"
+          min="1"
+          max="10"
+          value={guests}
+          onChange={(e) => setGuests(parseInt(e.target.value))}
+          required
+          aria-required="true"
+          aria-label="Number of guests input field"
+        />
+
+        <label htmlFor="occasion">Occasion</label>
+        <select
+          id="occasion"
+          name="occasion"
+          value={occasion}
+          onChange={(e) => setOccasion(e.target.value)}
+          required
+          aria-required="true"
+        >
+          <option value="">Select an occasion</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Anniversary">Anniversary</option>
+        </select>
+      </fieldset>
+
+      <button
+        type="submit"
+        className="submit-btn"
+        aria-label="On Click - Make your reservation"
       >
-        <option value="">Select a time</option>
-        {availableTimes.map((timeSlot) => (
-          <option key={timeSlot} value={timeSlot}>
-            {timeSlot}
-          </option>
-        ))}
-      </select>
-
-      <label htmlFor="guests">Number of guests</label>
-      <input
-        type="number"
-        placeholder="1"
-        min="1"
-        max="10"
-        id="guests"
-        value={guests}
-        onChange={(e) => setGuests(parseInt(e.target.value))}
-        required
-      />
-
-      <label htmlFor="occasion">Occasion</label>
-      <select
-        id="occasion"
-        value={occasion}
-        onChange={(e) => setOccasion(e.target.value)}
-        required
-      >
-        <option value="">Select an occasion</option>
-        <option value="Birthday">Birthday</option>
-        <option value="Anniversary">Anniversary</option>
-      </select>
-
-      <button type="submit" className="submit-btn" onClick={handleSubmit}>
-        Make Your reservation
+        Make Your Reservation
       </button>
-    </div>
+    </form>
   );
 };

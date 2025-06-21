@@ -13,9 +13,7 @@ import { BookingsForm } from "./BookingsForm";
  * @param {string} occasion - The occasion selected by the user.
  * @param {React.Dispatch<React.SetStateAction<string>>} setOccasion - The function to update the occasion state.
  * @param {string[]} availableTimes - The available times for booking.
- * @param {React.Dispatch<React.SetStateAction<string[]>>} dispatchTimes - The function to update the availableTimes state.
  * @param {Function} handleSubmit - The function to handle form submission.
- * @param {Function} submitForm - The function to handle the submission of the form to the API.
  *
  * @return {React.JSX.Element} A JSX element representing the booking page.
  */
@@ -29,9 +27,7 @@ export const Bookings = ({
   occasion,
   setOccasion,
   availableTimes,
-  dispatchTimes,
   handleSubmit,
-  submitForm,
 }) => {
   return (
     <div className="booking-page">
@@ -80,9 +76,7 @@ export const Bookings = ({
                 occasion={occasion}
                 setOccasion={setOccasion}
                 availableTimes={availableTimes}
-                dispatchTimes={dispatchTimes}
                 handleSubmit={handleSubmit}
-                submitForm={submitForm}
               />
             </div>
           </div>
